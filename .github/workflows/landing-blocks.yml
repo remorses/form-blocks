@@ -1,0 +1,30 @@
+name: Npm Package
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 13
+          registry-url: https://registry.npmjs.org/
+      - run: yarn
+      # - run: yarn test
+      - run: yarn build
+      - name: Bump version
+        uses: remorses/bump-version@js
+        with:
+          version_file: landing-blocks/VERSION
+          prefix: landing-blocks
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: yarn publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
