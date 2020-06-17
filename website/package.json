@@ -30,11 +30,6 @@
         "compose-function": "^3.0.3",
         "typescript": "^3.9.5",
         "@chakra-ui/core": "0.8.0"
-    },
-    "peerDependencies": {
-        "@chakra-ui/core": "^0.8.0",
-        "react": "*",
-        "react-dom": "*",
-        "@emotion/core": "*"
     }
+   
 }
