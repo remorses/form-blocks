@@ -3,6 +3,9 @@
     "_": "[bump if form-blocks]",
     "version": "0.0.1",
     "description": "Form components easy to use and compose",
+    "repository": {
+        "url": "https://github.com/remorses/form-blocks"
+    },
     "main": "dist/index.js",
     "module": "esm/index.js",
     "types": "dist/index.d.ts",
@@ -42,10 +45,10 @@
         "react-select": "^3.1.0",
         "sucrase": "^3.12.1",
         "typescript": "^3.8.3",
-        "@chakra-ui/core": "^0.8.1"
+        "@chakra-ui/core": "^0.8.0",
+        "@emotion/core": "^10.0.28"
     },
     "dependencies": {
-        "@emotion/core": "^10.0.28",
         "@emotion/styled": "^10.0.27",
         "@types/lodash.get": "^4.4.6",
         "color-js": "^1.0.5",
@@ -53,5 +56,13 @@
         "lodash.get": "^4.4.2",
         "prismjs": "^1.19.0",
         "react-simple-code-editor": "^0.11.0"
+    },
+    "peerDependencies": {
+        "@chakra-ui/core": "^0.8.0",
+        "final-form": "*",
+        "react-final-form": "*",
+        "react": "*",
+        "react-dom": "*",
+        "@emotion/core": "*"
     }
 }

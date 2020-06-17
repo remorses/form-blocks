@@ -1097,7 +1097,7 @@
   resolved "https://registry.yarnpkg.com/@camwiegert/typical/-/typical-0.1.1.tgz#c75d3b658e2f542d113c3e266389794c7dc45d6d"
   integrity sha512-4xAtH3F3uJ8boe9IPahdYFCBELmyOBwHGAn0rDO6C1rx0TuZb5f4UqfuiOQF7YiMJGCOsUIW7LyucMNnVQYsRg==
 
-"@chakra-ui/core@0.8.0", "@chakra-ui/core@^0.8.1":
+"@chakra-ui/core@0.8.0", "@chakra-ui/core@^0.8.0":
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/@chakra-ui/core/-/core-0.8.0.tgz#a377286becd86008448ec8cf29ceb8fc301ac2dc"
   integrity sha512-il1I1nEWOmWJSspnC+WyArLHbHvs82hvKTNDd24wr6spa/7v2jaXFZeWDNenY35ay1NHV7Ya2StcBwQRGHMWYA==
