@@ -12,6 +12,7 @@ export const Input = ({ name, validate, ...rest }: BaseProps & InputProps) => {
     })
     return (
         <ChakraInput
+            // variant='filled'
             {...input}
             isInvalid={meta.error && meta.touched}
             {...rest}

@@ -44,11 +44,14 @@ function Option(
     const selected = input.value === option.value
     return (
         <Button
-            border={selected ? '2px solid' : 'none'}
-            borderColor={selected ? 'gray.400' : 'gray.200'}
+            borderWidth={selected ? '2px' : '0px'}
+            borderStyle='solid'
+            m='-2px'
+            borderColor={selected ? 'gray.300' : 'gray.200'}
             height='auto'
-            variant='outline'
+            variant='unstyled'
             onClick={onClick}
+            _focus={{}}
             p='20px'
             flex='1'
             minW='100px'
@@ -56,6 +59,7 @@ function Option(
             flexDir='column'
             justifyContent='flex-start'
             alignItems='center'
+            textAlign='center'
             // wordBreak='break-word'
             whiteSpace='normal'
             {...rest}
