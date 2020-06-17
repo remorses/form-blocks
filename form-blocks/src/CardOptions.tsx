@@ -46,7 +46,7 @@ function Option(
         <Button
             borderWidth={selected ? '2px' : '0px'}
             borderStyle='solid'
-            m='-2px'
+            m={selected ? '-2px' : '0px'}
             borderColor={selected ? 'gray.300' : 'gray.200'}
             height='auto'
             variant='unstyled'

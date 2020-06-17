@@ -11,28 +11,10 @@
                     "name": "components",
                     "children": [
                         {
-                            "path": "pages/docs/components/BannerBlock.mdx",
-                            "name": "BannerBlock.mdx",
+                            "path": "pages/docs/components/CardOptions.mdx",
+                            "name": "CardOptions.mdx",
                             "title": "",
-                            "url": "/docs/components/BannerBlock"
-                        },
-                        {
-                            "path": "pages/docs/components/Breadcrumbs.mdx",
-                            "name": "Breadcrumbs.mdx",
-                            "title": "",
-                            "url": "/docs/components/Breadcrumbs"
-                        },
-                        {
-                            "path": "pages/docs/components/DashboardLayout.mdx",
-                            "name": "DashboardLayout.mdx",
-                            "title": "",
-                            "url": "/docs/components/DashboardLayout"
-                        },
-                        {
-                            "path": "pages/docs/components/TableBlock.mdx",
-                            "name": "TableBlock.mdx",
-                            "title": "",
-                            "url": "/docs/components/TableBlock"
+                            "url": "/docs/components/CardOptions"
                         }
                     ],
                     "size": null,
