@@ -1,9 +1,11 @@
-name: Npm Package
+name: form-blocks Npm Package
 
 on:
   push:
     branches:
       - master
+    # paths:
+    #   - form-blocks/**
 
 jobs:
   build:
@@ -15,16 +17,16 @@ jobs:
         with:
           node-version: 13
           registry-url: https://registry.npmjs.org/
-      - run: yarn
+      - run: cd form-blocks && yarn
       # - run: yarn test
-      - run: yarn build
+      - run: cd form-blocks && yarn build
       - name: Bump version
         uses: remorses/bump-version@js
         with:
-          version_file: landing-blocks/VERSION
-          prefix: landing-blocks
+          version_file: form-blocks/VERSION
+          prefix: form-blocks
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: yarn publish
+      - run: cd form-blocks && yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.npm_token }}

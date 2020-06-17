@@ -1,0 +1,57 @@
+{
+    "name": "form-blocks",
+    "_": "[bump if form-blocks]",
+    "version": "0.0.1",
+    "description": "Form components easy to use and compose",
+    "main": "dist/index.js",
+    "module": "esm/index.js",
+    "types": "dist/index.d.ts",
+    "sideEffects": false,
+    "mocha": {
+        "require": "tests/init.js",
+        "spec": "tests/**.ts",
+        "timeout": 9999999999
+    },
+    "files": [
+        "/dist/*",
+        "/esm/*"
+    ],
+    "scripts": {
+        "build": "tsc && tsc --module ESNext --outDir esm",
+        "test": "NODE_ENV=test mocha --colors --exit",
+        "example": "parcel serve --no-autoinstall example/index.html",
+        "compile": "sucrase -q ./src -d ./dist --transforms typescript,imports",
+        "dev": "yarn compile && node dist",
+        "storybook": "start-storybook -p 6006",
+        "build-storybook": "build-storybook"
+    },
+    "keywords": [],
+    "author": "Tommaso De Rossi, morse <beats.by.morse@gmail.com>",
+    "license": "ISC",
+    "devDependencies": {
+        "@types/mocha": "^5.2.7",
+        "@types/node": "^12.0.7",
+        "@types/react": "^16.9.25",
+        "dotenv": "^8.2.0",
+        "final-form": "^4.18.7",
+        "mocha": "^6.1.4",
+        "react": "^16.13.1",
+        "react-dom": "^16.13.1",
+        "react-final-form": "^6.3.5",
+        "react-icons": "^3.9.0",
+        "react-select": "^3.1.0",
+        "sucrase": "^3.12.1",
+        "typescript": "^3.8.3",
+        "@chakra-ui/core": "^0.8.1"
+    },
+    "dependencies": {
+        "@emotion/core": "^10.0.28",
+        "@emotion/styled": "^10.0.27",
+        "@types/lodash.get": "^4.4.6",
+        "color-js": "^1.0.5",
+        "emotion-theming": "^10.0.27",
+        "lodash.get": "^4.4.2",
+        "prismjs": "^1.19.0",
+        "react-simple-code-editor": "^0.11.0"
+    }
+}

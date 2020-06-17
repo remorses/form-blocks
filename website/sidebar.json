@@ -1,0 +1,54 @@
+{
+    "path": "pages",
+    "name": "pages",
+    "children": [
+        {
+            "path": "pages/docs",
+            "name": "docs",
+            "children": [
+                {
+                    "path": "pages/docs/components",
+                    "name": "components",
+                    "children": [
+                        {
+                            "path": "pages/docs/components/BannerBlock.mdx",
+                            "name": "BannerBlock.mdx",
+                            "title": "",
+                            "url": "/docs/components/BannerBlock"
+                        },
+                        {
+                            "path": "pages/docs/components/Breadcrumbs.mdx",
+                            "name": "Breadcrumbs.mdx",
+                            "title": "",
+                            "url": "/docs/components/Breadcrumbs"
+                        },
+                        {
+                            "path": "pages/docs/components/DashboardLayout.mdx",
+                            "name": "DashboardLayout.mdx",
+                            "title": "",
+                            "url": "/docs/components/DashboardLayout"
+                        },
+                        {
+                            "path": "pages/docs/components/TableBlock.mdx",
+                            "name": "TableBlock.mdx",
+                            "title": "",
+                            "url": "/docs/components/TableBlock"
+                        }
+                    ],
+                    "size": null,
+                    "type": "directory"
+                },
+                {
+                    "path": "pages/docs/index.mdx",
+                    "name": "index.mdx",
+                    "title": "Getting started",
+                    "url": "/docs"
+                }
+            ],
+            "size": null,
+            "type": "directory"
+        }
+    ],
+    "size": null,
+    "type": "directory"
+}
