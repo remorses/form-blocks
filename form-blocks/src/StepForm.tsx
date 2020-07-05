@@ -10,13 +10,14 @@ import React, {
     useContext,
     useEffect,
     useState,
+    useCallback,
 } from 'react'
 import { Form, useForm } from 'react-final-form'
 
 const QUERY_PAGE_NUMBER = 'stepNumber'
 
 export interface WizardProps {
-    showValuesAsJson?: boolean
+    showJsonValues?: boolean
     onSubmit?: Function
     wrapper?: any
     children?: ReactElement<StepProps> | Array<ReactElement<StepProps>>
@@ -127,12 +128,14 @@ export function useStep(): WizardStepProps {
     return useContext(WizardContext)
 }
 
+const defaultOnSubmit = (x) => alert(JSON.stringify(x, null, 4))
+
 export const Wizard = (props: WizardProps) => {
     const {
-        showValuesAsJson,
+        showJsonValues: showValuesAsJson,
         children,
         wrapper: Wrapper = DefaultWrapper,
-        onSubmit = (x) => alert(JSON.stringify(x, null, 4)),
+        onSubmit = defaultOnSubmit,
     } = props
     const [state, setState] = useState({ step: 0, values: {} })
     const childrenCount = React.Children.count(children)
@@ -155,25 +158,25 @@ export const Wizard = (props: WizardProps) => {
         }))
     }, [])
 
-    const next = (values) => {
-        setState((state) => {
-            const newStep = Math.min(state.step + 1, childrenCount - 1)
-            setValuesInStorage(state.values)
-            if (!steps[newStep].props?.hideFromHistory) {
-                setStepInQuery(newStep)
-            }
-            return {
-                ...state,
-                step: newStep,
-                // values: {
-                //     ...state.values,
-                //     ...values,
-                // },
-            }
-        })
-    }
+    const next = useCallback(
+        (values) => {
+            setState((state) => {
+                const newStep = Math.min(state.step + 1, childrenCount - 1)
+                setValuesInStorage(state.values)
+                if (!steps[newStep].props?.hideFromHistory) {
+                    setStepInQuery(newStep)
+                }
+                return {
+                    ...state,
+                    step: newStep,
+                    values,
+                }
+            })
+        },
+        [steps],
+    )
 
-    const previous = () => {
+    const previous = useCallback(() => {
         setState((state) => {
             const newStep = Math.max(state.step - 1, 0)
             setStepInQuery(newStep)
@@ -183,33 +186,40 @@ export const Wizard = (props: WizardProps) => {
                 step: newStep,
             }
         })
-    }
+    }, [steps])
 
-    const validate = (values) => {
-        // console.log('called validate')
-        const activeStep = steps[state.step]
-        if (!activeStep) {
-            return
-        }
-        const errors = activeStep.props.validate
-            ? activeStep.props.validate(values)
-            : {}
-        if (errors && Object.keys(errors).length) {
-            console.log('validation errors', errors)
-        }
-        return errors
-    }
+    const validate = useCallback(
+        (values) => {
+            // console.log('called validate')
+            const activeStep = steps[state.step]
+            if (!activeStep) {
+                return
+            }
+            const errors = activeStep.props.validate
+                ? activeStep.props.validate(values)
+                : {}
+            if (errors && Object.keys(errors).length) {
+                console.log('validation errors', errors)
+            }
+            return errors
+        },
+        [state.step, steps],
+    )
 
-    const handleSubmit = (values) => {
-        console.log('called next')
-        const isLastStep = state.step === childrenCount - 1
-        if (isLastStep) {
-            return onSubmit(values)
-        }
-        next(values)
-    }
+    const handleSubmit = useCallback(
+        (values) => {
+            console.log('called next')
+            const isLastStep = state.step === childrenCount - 1
+            if (isLastStep) {
+                setState((x) => ({ ...x, values }))
+                return onSubmit(values)
+            }
+            next(values)
+        },
+        [state.step, childrenCount],
+    )
 
-    const reset = () => {
+    const reset = useCallback(() => {
         setState((state) => {
             if (!steps[0].props?.hideFromHistory) {
                 setStepInQuery(0)
@@ -217,7 +227,7 @@ export const Wizard = (props: WizardProps) => {
             setValuesInStorage(state.values)
             return { ...state, step: 0 }
         })
-    }
+    }, [])
     // console.log('state', state)
 
     let activeStep = steps[state.step]
@@ -239,11 +249,6 @@ export const Wizard = (props: WizardProps) => {
                 }
                 return (
                     <Box as='form' height='100%' onSubmit={handleSubmit}>
-                        <UpdateValuesState
-                            setValues={(values) =>
-                                setState((x) => ({ ...x, values }))
-                            }
-                        />
                         <WizardContext.Provider value={stepProps}>
                             <Wrapper {...stepProps}>
                                 {activeStep}
