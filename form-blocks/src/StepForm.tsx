@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/core'
+import { Box, useColorMode, Stack } from '@chakra-ui/core'
 import React, {
     Children,
     cloneElement,
@@ -269,11 +269,10 @@ export const Wizard = (props: WizardProps) => {
     )
 }
 
-
 export const DefaultWrapper = ({ children }) => {
+    const { colorMode } = useColorMode()
     return (
         <Box
-            bg='globalBackground'
             height='100%'
             minHeight='500px'
             // position='absolute'
@@ -282,22 +281,21 @@ export const DefaultWrapper = ({ children }) => {
             p={['0', '0', '50px']}
             right='0'
         >
-            <Box
-                d='flex'
-                flexDir='column'
+            <Stack
+                align='stretch'
                 maxW='1000px'
-                width='100%'
                 position='relative'
                 mx='auto'
                 minH='500px'
                 shadow='0 0 100px rgba(0,0,0,0.1)'
-                p={['20px', '20px', '50px']}
+                width='100%'
+                p={['6', null, null, '8']}
                 // flex='1'
                 borderRadius='20px'
-                bg={{ dark: 'black', light: 'white' }['light']}
+                bg={{ dark: 'gray.700', light: 'white' }[colorMode]}
             >
                 {children}
-            </Box>
+            </Stack>
         </Box>
     )
 }

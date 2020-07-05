@@ -23,7 +23,7 @@ export default function Page({}) {
     return (
         <ThemeProvider>
             <CSSReset />
-            <Wizard wrapper={Wrapper}>
+            <Wizard >
                 <Step>
                     <Step0 />
                 </Step>
@@ -66,7 +66,7 @@ export const Step0 = () => {
 
 export const Step1 = ({ next, previous }: WizardStepProps) => {
     return (
-        <Stack spacing={4} flex='1'>
+        <Stack spacing={4} >
             <Text>Your name</Text>
             <Input name='name' placeholder='Insert text 1' />
             <ValidationError name='name' />
@@ -76,7 +76,7 @@ export const Step1 = ({ next, previous }: WizardStepProps) => {
             <Box flex='1' />
             <Flex mt='auto' justifyContent='space-between'>
                 <Button onClick={previous}>previous</Button>
-                <Button onClick={next}>next</Button>
+                <Button alignSelf='flex-end' onClick={next}>next</Button>
             </Flex>
         </Stack>
     )
@@ -125,37 +125,5 @@ export const Step4 = ({ reset }: WizardStepProps) => {
                 reset
             </Button>
         </Stack>
-    )
-}
-
-export const Wrapper = ({ children }) => {
-    return (
-        <Box
-            bg='globalBackground'
-            height='100%'
-            minHeight='400px'
-            // position='absolute'
-            // align='center'
-            left='0'
-            p={['0', '0', '50px']}
-            right='0'
-        >
-            <Box
-                d='flex'
-                flexDir='column'
-                maxW='1000px'
-                width='100%'
-                position='relative'
-                mx='auto'
-                minH='500px'
-                shadow='0 0 100px rgba(0,0,0,0.1)'
-                p={['20px', '20px', '50px']}
-                // flex='1'
-                borderRadius='20px'
-                bg={{ dark: 'black', light: 'white' }['light']}
-            >
-                {children}
-            </Box>
-        </Box>
     )
 }
