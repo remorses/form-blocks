@@ -1,7 +1,7 @@
 {
     "name": "form-blocks",
     "_": "[bump if form-blocks]",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "description": "Form components easy to use and compose",
     "repository": {
         "url": "https://github.com/remorses/form-blocks"
