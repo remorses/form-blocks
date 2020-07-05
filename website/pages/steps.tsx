@@ -28,7 +28,7 @@ export default function Page({}) {
     return (
         <ThemeProvider>
             <CSSReset />
-            <Wizard showValuesAsJson wrapper={Wrapper}>
+            <Wizard  wrapper={Wrapper}>
                 <Step>
                     <Step0 />
                 </Step>
@@ -135,34 +135,32 @@ const Step4 = ({ reset }: WizardStepProps) => {
 
 export const Wrapper = ({ children }) => {
     return (
-        <>
+        <Box
+            bg='globalBackground'
+            maxWidth='100vw'
+            height='100vh'
+            position='absolute'
+            // align='center'
+            left='0'
+            p={['0', '0', '50px']}
+            right='0'
+        >
             <Box
-                bg='globalBackground'
-                maxWidth='100vw'
-                height='100vh'
-                position='absolute'
-                // align='center'
-                left='0'
-                p={['0', '0', '50px']}
-                right='0'
+                d='flex'
+                flexDir='column'
+                maxW='1000px'
+                width='100%'
+                position='relative'
+                mx='auto'
+                minH='500px'
+                shadow='0 0 100px rgba(0,0,0,0.1)'
+                p={['20px', '20px', '50px']}
+                // flex='1'
+                borderRadius='20px'
+                bg={{ dark: 'black', light: 'white' }['light']}
             >
-                <Box
-                    d='flex'
-                    flexDir='column'
-                    maxW='1000px'
-                    width='100%'
-                    position='relative'
-                    mx='auto'
-                    minH='500px'
-                    shadow='0 0 100px rgba(0,0,0,0.1)'
-                    p={['20px', '20px', '50px']}
-                    // flex='1'
-                    borderRadius='20px'
-                    bg={{ dark: 'black', light: 'white' }['light']}
-                >
-                    {children}
-                </Box>
+                {children}
             </Box>
-        </>
+        </Box>
     )
 }
