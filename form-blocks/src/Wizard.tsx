@@ -116,6 +116,9 @@ export function useStep(): WizardStepProps {
 
 const defaultOnSubmit = (x) => alert(JSON.stringify(x, null, 4))
 
+
+
+// TODO instead of getting options from the Step props, pass a steps prop with all steps object with shape { hideFromHistory: true, validate: () => {}, component: Component or element }
 export const Wizard = (props: WizardProps) => {
     const {
         showJsonValues: showValuesAsJson,
