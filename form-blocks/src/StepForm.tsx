@@ -9,6 +9,7 @@ import React, {
     useContext,
     createContext,
     FC,
+    Children,
 } from 'react'
 import { Form, useForm, useField } from 'react-final-form'
 
@@ -18,7 +19,7 @@ export interface WizardProps {
     showValuesAsJson?: boolean
     onSubmit?: Function
     Wrapper?: any
-    children?: typeof Step | Array<typeof Step>
+    children?: ReactElement<StepProps> | Array<ReactElement<StepProps>>
 }
 
 function getStoredValues(): any {
@@ -97,12 +98,13 @@ export interface StepProps {
     validate?: (values) => {}
 }
 
-export const Step: FC<StepProps> = (props): any => {
+export const Step: FC<StepProps> = (props) => {
     const { children, ...rest } = props
+    const stepProps = useStep()
     if (!isValidElement(children)) {
-        return <>children</>
+        return <Fragment>{children}</Fragment>
     }
-    return <>cloneElement(children, rest)</>
+    return Children.only(cloneElement(children, { ...rest, ...stepProps }))
 }
 
 const UpdateValuesState = ({ setValues }) => {
@@ -134,7 +136,10 @@ export const Wizard = (props: WizardProps) => {
     } = props
     const [state, setState] = useState({ step: 0, values: {} })
     const childrenCount = React.Children.count(children)
-    const steps: ReactElement[] = React.Children.toArray(children).filter(isValidElement) as any
+    const steps: ReactElement[] = React.Children.toArray(children).filter(
+        isValidElement,
+    )
+    // console.log(steps)
 
     useEffect(() => {
         // TODO display loading in the mean time
@@ -183,6 +188,9 @@ export const Wizard = (props: WizardProps) => {
     const validate = (values) => {
         // console.log('called validate')
         const activeStep = steps[state.step]
+        if (!activeStep) {
+            return
+        }
         const errors = activeStep.props.validate
             ? activeStep.props.validate(values)
             : {}
@@ -210,7 +218,7 @@ export const Wizard = (props: WizardProps) => {
             return { ...state, step: 0 }
         })
     }
-    // console.log(state)
+    // console.log('state', state)
 
     let activeStep = steps[state.step] as ReactElement
 

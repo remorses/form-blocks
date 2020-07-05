@@ -1,6 +1,13 @@
 import React, { useEffect } from 'react'
 import { render } from 'react-dom'
-import { Wizard, WizardStepProps, Input, ValidationError, CheckBox, Step  } from 'form-blocks/src/'
+import {
+    Wizard,
+    WizardStepProps,
+    Input,
+    ValidationError,
+    CheckBox,
+    Step,
+} from 'form-blocks/src/'
 import { Field, useField, useForm } from 'react-final-form'
 import {
     Box,
@@ -22,10 +29,9 @@ export default function Page({}) {
             <CSSReset />
             <Wizard showValuesAsJson Wrapper={Wrapper}>
                 <Step>
-                    <Step0/>
+                    <Step0 />
                 </Step>
-{/*                 
-                <Step1
+                <Step
                     validate={(values) => {
                         const errors = {} as any
                         if (!values.name) {
@@ -33,10 +39,18 @@ export default function Page({}) {
                         }
                         return errors
                     }}
-                />
-                <Step2 />
-                <Step3 />
-                <Step4 hideFromHistory /> */}
+                >
+                    <Step1 />
+                </Step>
+                <Step>
+                    <Step2 />
+                </Step>
+                <Step>
+                    <Step3 />
+                </Step>
+                <Step hideFromHistory>
+                    <Step4 />
+                </Step>
             </Wizard>
         </ThemeProvider>
     )
@@ -116,7 +130,6 @@ const Step4 = ({ reset }: WizardStepProps) => {
         </Stack>
     )
 }
-
 
 export const Wrapper = ({ children }) => {
     return (
