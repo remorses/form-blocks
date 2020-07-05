@@ -1,13 +1,13 @@
 import { Box, Checkbox as ChakraCheckBox, CheckboxProps } from '@chakra-ui/core'
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { useField } from 'react-final-form'
 import { BaseProps } from './common'
 
 export const CheckBox = ({
     name,
-    label = '',
+    children,
     ...rest
-}: BaseProps & { label?: string } & Omit<CheckboxProps, 'children'>) => {
+}: BaseProps & CheckboxProps) => {
     const {
         input: { checked, ...input },
         meta: { error, touched, invalid },
@@ -17,7 +17,7 @@ export const CheckBox = ({
     return (
         <Box>
             <ChakraCheckBox {...input} {...rest}>
-                {label}
+                {children}
             </ChakraCheckBox>
         </Box>
     )

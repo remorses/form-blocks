@@ -33,7 +33,7 @@ Form Blocks is a set of components built to create beautiful forms
 
 <Playground>
     <ThemeProvider>
-        <Stack align='center' >
+        <Stack align='center'>
             <CSSReset />
             <Form
                 onSubmit={(x) => console.log(JSON.stringify(x, null, 4))}
@@ -49,8 +49,9 @@ Form Blocks is a set of components built to create beautiful forms
                         <Labelled
                             name='checkbox'
                             field={<CheckBox label='single one' />}
-                            label='checkbox'
-                        />
+                        >
+                            checkbox
+                        </CheckBox>
                         <Labelled
                             name='checkboxgroup'
                             label='textArea'
