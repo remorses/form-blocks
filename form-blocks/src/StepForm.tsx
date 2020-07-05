@@ -238,7 +238,7 @@ export const Wizard = (props: WizardProps) => {
                     previous,
                 }
                 return (
-                    <form onSubmit={handleSubmit}>
+                    <Box as='form' height='100%' onSubmit={handleSubmit}>
                         <UpdateValuesState
                             setValues={(values) =>
                                 setState((x) => ({ ...x, values }))
@@ -262,7 +262,7 @@ export const Wizard = (props: WizardProps) => {
                                 )}
                             </Wrapper>
                         </WizardContext.Provider>
-                    </form>
+                    </Box>
                 )
             }}
         </Form>
@@ -283,10 +283,12 @@ export const DefaultWrapper = ({ children }) => {
         >
             <Stack
                 align='stretch'
+                // justify='stretch'
                 maxW='1000px'
                 position='relative'
                 mx='auto'
-                minH='500px'
+                minHeight='500px'
+                height='100%'
                 shadow='0 0 100px rgba(0,0,0,0.1)'
                 width='100%'
                 p={['6', null, null, '8']}

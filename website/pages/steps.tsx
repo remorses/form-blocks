@@ -23,7 +23,7 @@ export default function Page({}) {
     return (
         <ThemeProvider>
             <CSSReset />
-            <Wizard >
+            <Wizard>
                 <Step>
                     <Step0 />
                 </Step>
@@ -66,7 +66,7 @@ export const Step0 = () => {
 
 export const Step1 = ({ next, previous }: WizardStepProps) => {
     return (
-        <Stack spacing={4} >
+        <Stack spacing={4} height='100%' flex='1'>
             <Text>Your name</Text>
             <Input name='name' placeholder='Insert text 1' />
             <ValidationError name='name' />
@@ -76,7 +76,9 @@ export const Step1 = ({ next, previous }: WizardStepProps) => {
             <Box flex='1' />
             <Flex mt='auto' justifyContent='space-between'>
                 <Button onClick={previous}>previous</Button>
-                <Button alignSelf='flex-end' onClick={next}>next</Button>
+                <Button alignSelf='flex-end' onClick={next}>
+                    next
+                </Button>
             </Flex>
         </Stack>
     )
