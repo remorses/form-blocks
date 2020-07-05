@@ -7,6 +7,7 @@ import {
     ValidationError,
     CheckBox,
     Step,
+    useStep,
 } from 'form-blocks/src/'
 import { Field, useField, useForm } from 'react-final-form'
 import {
@@ -56,7 +57,8 @@ export default function Page({}) {
     )
 }
 
-const Step0 = ({ next }: WizardStepProps) => {
+const Step0 = () => {
+    const { next } = useStep()
     return (
         <Stack spacing={4} flex='1' justify='center' align='center'>
             <Text fontSize='48px'>Welcome to multi-step-form</Text>
