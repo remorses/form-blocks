@@ -4,6 +4,7 @@ import React, {
     Children,
     cloneElement,
     ReactNode,
+    useCallback,
 } from 'react'
 import {
     Form as FinalForm,
@@ -18,21 +19,21 @@ export type FormProps = Omit<
     children?: ReactNode | ReactNode[]
 }
 
+const defaultOnSubmit = (x) => console.log(JSON.stringify(x, null, 4))
+
 export const Form = ({
-    onSubmit = (x) => console.log(JSON.stringify(x, null, 4)),
+    onSubmit = defaultOnSubmit,
     children,
     ...rest
 }: FormProps) => {
-    return (
-        <FinalForm
-            onSubmit={onSubmit}
-            render={(props) => {
-                if (!isValidElement(children)) {
-                    return <Fragment>{children}</Fragment>
-                }
-                return Children.only(cloneElement(children, props))
-            }}
-            {...rest}
-        />
+    const renderer = useCallback(
+        (props) => {
+            if (!isValidElement(children)) {
+                return <Fragment>{children}</Fragment>
+            }
+            return Children.only(cloneElement(children, props))
+        },
+        [children],
     )
+    return <FinalForm onSubmit={onSubmit} render={renderer} {...rest} />
 }
