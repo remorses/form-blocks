@@ -114,14 +114,14 @@ export const Step3 = ({ previous, next }: WizardStepProps) => {
 }
 
 export const Step4 = ({ reset }: WizardStepProps) => {
-    const form = useForm()
+    // const form = useForm()
     return (
         <Stack d='flex' spacing={4} flex='1' justify='center' align='center'>
             <Text fontSize='48px'>Finished 🥳</Text>
             <Button
                 onClick={() => {
                     reset()
-                    form.initialize({})
+                    // form.initialize({})
                 }}
             >
                 reset

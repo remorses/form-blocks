@@ -219,7 +219,7 @@ export const Wizard = (props: WizardProps) => {
     let activeStep = steps[state.step]
 
     const renderer = useCallback(
-        ({ handleSubmit, ...rest }) => {
+        ({ handleSubmit }) => {
             const stepProps: WizardStepProps = {
                 isLastStep: state.step === childrenCount - 1,
                 isFirstStep: state.step === 0,
@@ -260,6 +260,7 @@ export const Wizard = (props: WizardProps) => {
             validate={validate}
             onSubmit={handleSubmit}
             render={renderer}
+            subscription={{ submitting: true, pristine: true }}
         />
     )
 }
