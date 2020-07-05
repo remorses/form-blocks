@@ -26,14 +26,11 @@ export const Form = ({
     children,
     ...rest
 }: FormProps) => {
-    const renderer = useCallback(
-        (props) => {
-            if (!isValidElement(children)) {
-                return <Fragment>{children}</Fragment>
-            }
-            return Children.only(cloneElement(children, props))
-        },
-        [children],
-    )
+    const renderer = useCallback((props) => {
+        if (!isValidElement(children)) {
+            return <Fragment>{children}</Fragment>
+        }
+        return Children.only(cloneElement(children, props))
+    }, [])
     return <FinalForm onSubmit={onSubmit} render={renderer} {...rest} />
 }
