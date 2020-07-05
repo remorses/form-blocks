@@ -11,6 +11,10 @@ import React, {
     useEffect,
     useState,
     useCallback,
+    ReactComponentElement,
+    ReactNode,
+    ComponentType,
+    ReactChild,
 } from 'react'
 import { Form, useForm, FormSpy } from 'react-final-form'
 
@@ -20,7 +24,13 @@ export interface WizardProps {
     showJsonValues?: boolean
     onSubmit?: Function
     wrapper?: any
-    children?: ReactElement<StepProps> | Array<ReactElement<StepProps>>
+    steps: StepConfig[]
+}
+
+export interface StepConfig {
+    hideFromHistory?: boolean
+    validate?: (values: Record<string, any>) => any
+    element?: ReactElement<WizardStepProps> // | ComponentType
 }
 
 function getStoredValues(): any {
@@ -94,20 +104,6 @@ export interface WizardStepProps {
     currentStep?: number
 }
 
-export interface StepProps {
-    hideFromHistory?: boolean
-    validate?: (values: Record<string, any>) => any
-}
-
-export const Step: FC<StepProps> = (props) => {
-    const { children, ...rest } = props
-    const stepProps = useStep()
-    if (!isValidElement(children)) {
-        return <Fragment>{children}</Fragment>
-    }
-    return Children.only(cloneElement(children, { ...rest, ...stepProps }))
-}
-
 export const WizardContext = createContext<WizardStepProps>({})
 
 export function useStep(): WizardStepProps {
@@ -116,21 +112,17 @@ export function useStep(): WizardStepProps {
 
 const defaultOnSubmit = (x) => alert(JSON.stringify(x, null, 4))
 
-
-
 // TODO instead of getting options from the Step props, pass a steps prop with all steps object with shape { hideFromHistory: true, validate: () => {}, component: Component or element }
 export const Wizard = (props: WizardProps) => {
     const {
         showJsonValues: showValuesAsJson,
-        children,
         wrapper: Wrapper = DefaultWrapper,
         onSubmit = defaultOnSubmit,
+        steps,
     } = props
     const [state, setState] = useState({ step: 0, values: {} })
-    const childrenCount = React.Children.count(children)
-    const steps: ReactElement[] = React.Children.toArray(children).filter(
-        isValidElement,
-    )
+    const stepsCount = steps.length
+
     // console.log(steps)
 
     useEffect(() => {
@@ -150,9 +142,9 @@ export const Wizard = (props: WizardProps) => {
     const next = useCallback(
         (values) => {
             setState((state) => {
-                const newStep = Math.min(state.step + 1, childrenCount - 1)
+                const newStep = Math.min(state.step + 1, stepsCount - 1)
                 setValuesInStorage(state.values)
-                if (!steps[newStep].props?.hideFromHistory) {
+                if (!steps[newStep].hideFromHistory) {
                     setStepInQuery(newStep)
                 }
                 return {
@@ -184,8 +176,8 @@ export const Wizard = (props: WizardProps) => {
             if (!activeStep) {
                 return
             }
-            const errors = activeStep.props.validate
-                ? activeStep.props.validate(values)
+            const errors = activeStep.validate
+                ? activeStep.validate(values)
                 : {}
             if (errors && Object.keys(errors).length) {
                 console.log('validation errors', errors)
@@ -198,19 +190,19 @@ export const Wizard = (props: WizardProps) => {
     const handleSubmit = useCallback(
         (values) => {
             console.log('called next')
-            const isLastStep = state.step === childrenCount - 1
+            const isLastStep = state.step === stepsCount - 1
             if (isLastStep) {
                 setState((x) => ({ ...x, values }))
                 return onSubmit(values)
             }
             next(values)
         },
-        [state.step, childrenCount],
+        [state.step, stepsCount],
     )
 
     const reset = useCallback(() => {
         setState((state) => {
-            if (!steps[0].props?.hideFromHistory) {
+            if (!steps[0]?.hideFromHistory) {
                 setStepInQuery(0)
             }
             setValuesInStorage(state.values)
@@ -224,7 +216,7 @@ export const Wizard = (props: WizardProps) => {
     const renderer = useCallback(
         ({ handleSubmit }) => {
             const stepProps: WizardStepProps = {
-                isLastStep: state.step === childrenCount - 1,
+                isLastStep: state.step === stepsCount - 1,
                 isFirstStep: state.step === 0,
                 currentStep: state.step,
                 next: handleSubmit,
@@ -235,7 +227,8 @@ export const Wizard = (props: WizardProps) => {
                 <Box as='form' height='100%' onSubmit={handleSubmit}>
                     <WizardContext.Provider value={stepProps}>
                         <Wrapper {...stepProps}>
-                            {activeStep}
+                            {isValidElement(activeStep.element) &&
+                                cloneElement(activeStep.element, stepProps)}
                             {showValuesAsJson && (
                                 <FormSpy subscription={{ values: true }}>
                                     {({ values }) => (
@@ -257,7 +250,7 @@ export const Wizard = (props: WizardProps) => {
                 </Box>
             )
         },
-        [steps, state, childrenCount],
+        [steps, state, stepsCount],
     )
 
     return (

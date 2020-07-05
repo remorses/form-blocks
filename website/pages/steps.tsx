@@ -23,31 +23,33 @@ export default function Page({}) {
     return (
         <ThemeProvider>
             <CSSReset />
-            <Wizard>
-                <Step>
-                    <Step0 />
-                </Step>
-                <Step
-                    validate={(values) => {
-                        const errors = {} as any
-                        if (!values.name) {
-                            errors.name = 'Field required'
-                        }
-                        return errors
-                    }}
-                >
-                    <Step1 />
-                </Step>
-                <Step>
-                    <Step2 />
-                </Step>
-                <Step>
-                    <Step3 />
-                </Step>
-                <Step hideFromHistory>
-                    <Step4 />
-                </Step>
-            </Wizard>
+            <Wizard
+                steps={[
+                    {
+                        element: <Step0 />,
+                    },
+                    {
+                        element: <Step1 />,
+                        validate: (values) => {
+                            const errors = {} as any
+                            if (!values.name) {
+                                errors.name = 'Field required'
+                            }
+                            return errors
+                        },
+                    },
+                    {
+                        element: <Step2 />,
+                    },
+                    {
+                        element: <Step3 />,
+                    },
+                    {
+                        element: <Step4 />,
+                        hideFromHistory: true,
+                    },
+                ]}
+            />
         </ThemeProvider>
     )
 }
