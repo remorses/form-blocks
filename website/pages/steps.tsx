@@ -28,7 +28,7 @@ export default function Page({}) {
     return (
         <ThemeProvider>
             <CSSReset />
-            <Wizard showValuesAsJson Wrapper={Wrapper}>
+            <Wizard showValuesAsJson wrapper={Wrapper}>
                 <Step>
                     <Step0 />
                 </Step>

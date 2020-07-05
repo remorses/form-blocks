@@ -18,7 +18,7 @@ const QUERY_PAGE_NUMBER = 'stepNumber'
 export interface WizardProps {
     showValuesAsJson?: boolean
     onSubmit?: Function
-    Wrapper?: any
+    wrapper?: any
     children?: ReactElement<StepProps> | Array<ReactElement<StepProps>>
 }
 
@@ -131,7 +131,7 @@ export const Wizard = (props: WizardProps) => {
     const {
         showValuesAsJson,
         children,
-        Wrapper = Fragment,
+        wrapper: Wrapper = Fragment,
         onSubmit = (x) => alert(JSON.stringify(x, null, 4)),
     } = props
     const [state, setState] = useState({ step: 0, values: {} })
