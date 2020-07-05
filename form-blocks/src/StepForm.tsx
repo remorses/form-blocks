@@ -220,7 +220,7 @@ export const Wizard = (props: WizardProps) => {
     }
     // console.log('state', state)
 
-    let activeStep = steps[state.step] as ReactElement
+    let activeStep = steps[state.step] || steps[0]
 
     return (
         <Form
