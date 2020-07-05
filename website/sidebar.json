@@ -13,8 +13,16 @@
                         {
                             "path": "pages/docs/components/CardOptions.mdx",
                             "name": "CardOptions.mdx",
-                            "title": "",
+                            "meta": {},
+                            "title": "CardOptions",
                             "url": "/docs/components/CardOptions"
+                        },
+                        {
+                            "path": "pages/docs/components/WizardForm.mdx",
+                            "name": "WizardForm.mdx",
+                            "meta": {},
+                            "title": "WizardForm",
+                            "url": "/docs/components/WizardForm"
                         }
                     ],
                     "size": null,
@@ -23,6 +31,7 @@
                 {
                     "path": "pages/docs/index.mdx",
                     "name": "index.mdx",
+                    "meta": {},
                     "title": "Getting started",
                     "url": "/docs"
                 }

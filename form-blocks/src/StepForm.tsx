@@ -1,17 +1,17 @@
+import { Box } from '@chakra-ui/core'
 import React, {
-    ReactElement,
-    useEffect,
-    useState,
-    Fragment,
+    Children,
     cloneElement,
-    ReactNode,
-    isValidElement,
-    useContext,
     createContext,
     FC,
-    Children,
+    Fragment,
+    isValidElement,
+    ReactElement,
+    useContext,
+    useEffect,
+    useState,
 } from 'react'
-import { Form, useForm, useField } from 'react-final-form'
+import { Form, useForm } from 'react-final-form'
 
 const QUERY_PAGE_NUMBER = 'stepNumber'
 
@@ -131,7 +131,7 @@ export const Wizard = (props: WizardProps) => {
     const {
         showValuesAsJson,
         children,
-        wrapper: Wrapper = Fragment,
+        wrapper: Wrapper = DefaultWrapper,
         onSubmit = (x) => alert(JSON.stringify(x, null, 4)),
     } = props
     const [state, setState] = useState({ step: 0, values: {} })
@@ -269,4 +269,35 @@ export const Wizard = (props: WizardProps) => {
     )
 }
 
-// Wizard.Step = ({ children }: WizardStepProps) => children
+
+export const DefaultWrapper = ({ children }) => {
+    return (
+        <Box
+            bg='globalBackground'
+            height='100%'
+            minHeight='500px'
+            // position='absolute'
+            // align='center'
+            left='0'
+            p={['0', '0', '50px']}
+            right='0'
+        >
+            <Box
+                d='flex'
+                flexDir='column'
+                maxW='1000px'
+                width='100%'
+                position='relative'
+                mx='auto'
+                minH='500px'
+                shadow='0 0 100px rgba(0,0,0,0.1)'
+                p={['20px', '20px', '50px']}
+                // flex='1'
+                borderRadius='20px'
+                bg={{ dark: 'black', light: 'white' }['light']}
+            >
+                {children}
+            </Box>
+        </Box>
+    )
+}

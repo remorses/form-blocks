@@ -3316,10 +3316,10 @@ directory-tree@^2.2.4:
   resolved "https://registry.yarnpkg.com/directory-tree/-/directory-tree-2.2.4.tgz#6d5bd7d82e48378e256a1e87b678a43c50076e2e"
   integrity sha512-2N43msQptKbi3WMfIs+U09yi6bfyKL+MWyj5VMj8t1F/Tx04bt1cn/EEIU3o1JBltlJk7NQnzOEuTNa/KQvbWA==
 
-dokz@^1.0.29:
-  version "1.0.34"
-  resolved "https://registry.yarnpkg.com/dokz/-/dokz-1.0.34.tgz#604c79c221ca13252d7801e82418cfe54ac45d0c"
-  integrity sha512-5iTGnYxaFGZaGXAHtNlnh/xPHAKWJdzov220J94PSYKcMqKs94VTqt9ibn66pJ8XZypZjrp11NMRO92nwsK5jg==
+dokz@^1.0.55:
+  version "1.0.55"
+  resolved "https://registry.yarnpkg.com/dokz/-/dokz-1.0.55.tgz#028ffe95b18e2c4b2c2897ee29d600b194b4dfb8"
+  integrity sha512-jZr/h6jcUAF4+tbtG53PBVAxFTriQgQVAUzAjtTZMTQacPyDrbVJqCYxYmaH5obA+zFeApYeQO4wGQPxr51wXQ==
   dependencies:
     "@babel/generator" "^7.10.2"
     "@babel/parser" "^7.10.2"
@@ -3340,6 +3340,7 @@ dokz@^1.0.29:
     hast-util-to-string "^1.0.3"
     js-string-escape "^1.0.1"
     jsx-ast-utils "^2.3.0"
+    layout-kit-react "^0.1.8"
     lodash "^4.17.15"
     mdast "^3.0.0"
     mdast-util-to-string "^1.1.0"
@@ -3352,11 +3353,14 @@ dokz@^1.0.29:
     react-live "^2.2.2"
     react-storage-hooks "^4.0.1"
     remark "^12.0.0"
+    remark-extract-frontmatter "^2.0.2"
+    remark-frontmatter "^2.0.0"
     remark-mdx-metadata "^1.0.1"
     remark-slug "^6.0.0"
     strip-indent "^3.0.0"
     unist-util-is "^4.0.2"
     unist-util-visit "^2.0.2"
+    yaml "^1.10.0"
 
 dom-helpers@^5.0.1:
   version "5.1.4"
@@ -3741,6 +3745,13 @@ fast-memoize@^2.5.1:
   resolved "https://registry.yarnpkg.com/fast-memoize/-/fast-memoize-2.5.2.tgz#79e3bb6a4ec867ea40ba0e7146816f6cdce9b57e"
   integrity sha512-Ue0LwpDYErFbmNnZSF0UH6eImUwDmogUO1jyE+JbN2gsQz/jICm1Ve7t9QT0rNSsfJt+Hs4/S3GnsDVjL4HVrw==
 
+fault@^1.0.1:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/fault/-/fault-1.0.4.tgz#eafcfc0a6d214fc94601e170df29954a4f842f13"
+  integrity sha512-CJ0HCB5tL5fYTEA7ToAq5+kTwd++Borf1/bifxd9iT70QcXr4MRrO3Llf8Ifs70q+SJcGHFtnIE/Nw6giCtECA==
+  dependencies:
+    format "^0.2.0"
+
 fbjs@^0.8.0, fbjs@^0.8.1:
   version "0.8.17"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.17.tgz#c4d598ead6949112653d6588b01a5cdcd9f90fdd"
@@ -3872,6 +3883,11 @@ fork-ts-checker-webpack-plugin@3.1.1:
     semver "^5.6.0"
     tapable "^1.0.0"
     worker-rpc "^0.1.0"
+
+format@^0.2.0:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/format/-/format-0.2.2.tgz#d6170107e9efdc4ed30c9dc39016df942b5cb58b"
+  integrity sha1-1hcBB+nv3E7TDJ3DkBbflCtctYs=
 
 fragment-cache@^0.2.1:
   version "0.2.1"
@@ -6767,10 +6783,24 @@ regjsparser@^0.6.4:
   dependencies:
     jsesc "~0.5.0"
 
+remark-extract-frontmatter@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/remark-extract-frontmatter/-/remark-extract-frontmatter-2.0.2.tgz#814acde37dc8ddbb129e9706937b024f6adb1ad4"
+  integrity sha512-cQGjzewvX0YwU4JZManqg6irSOqCh8axNtlONwcF9QjujkWc93SBiXC0gvQoSBBMWiM8lOjEU0kaNc+oSM2xMA==
+  dependencies:
+    xtend "^4.0.1"
+
 remark-footnotes@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/remark-footnotes/-/remark-footnotes-1.0.0.tgz#9c7a97f9a89397858a50033373020b1ea2aad011"
   integrity sha512-X9Ncj4cj3/CIvLI2Z9IobHtVi8FVdUrdJkCNaL9kdX8ohfsi18DXHsCVd/A7ssARBdccdDb5ODnt62WuEWaM/g==
+
+remark-frontmatter@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/remark-frontmatter/-/remark-frontmatter-2.0.0.tgz#c9b8539c27cd23b1672c7e0fcbd5795eeedb4dc1"
+  integrity sha512-uNOQt4tO14qBFWXenF0MLC4cqo3dv8qiHPGyjCl1rwOT0LomSHpcElbjjVh5CwzElInB38HD8aSRVugKQjeyHA==
+  dependencies:
+    fault "^1.0.1"
 
 remark-mdx-metadata@^1.0.1:
   version "1.0.1"
@@ -8345,7 +8375,7 @@ yallist@^4.0.0:
   resolved "https://registry.yarnpkg.com/yallist/-/yallist-4.0.0.tgz#9bb92790d9c0effec63be73519e11a35019a3a72"
   integrity sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==
 
-yaml@^1.7.2:
+yaml@^1.10.0, yaml@^1.7.2:
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/yaml/-/yaml-1.10.0.tgz#3b593add944876077d4d683fee01081bd9fff31e"
   integrity sha512-yr2icI4glYaNG+KWONODapy2/jDdMSDnrONSjblABjD9B4Z5LgiircSt8m8sRZFNi08kG9Sm0uSHtEmP3zaEGg==

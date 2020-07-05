@@ -1,34 +1,29 @@
-import React, { useEffect } from 'react'
-import { render } from 'react-dom'
-import {
-    Wizard,
-    WizardStepProps,
-    Input,
-    ValidationError,
-    CheckBox,
-    Step,
-    useStep,
-} from 'form-blocks/src/'
-import { Field, useField, useForm } from 'react-final-form'
 import {
     Box,
-    CSSReset,
-    ThemeProvider,
-    InputProps,
     Button,
-    Text,
-    Stack,
+    CSSReset,
     Flex,
-    BoxProps,
-    Checkbox,
-    CheckboxProps,
+    Stack,
+    Text,
+    ThemeProvider,
 } from '@chakra-ui/core'
+import {
+    CheckBox,
+    Input,
+    Step,
+    useStep,
+    ValidationError,
+    Wizard,
+    WizardStepProps,
+} from 'form-blocks/src/'
+import React from 'react'
+import { useForm } from 'react-final-form'
 
 export default function Page({}) {
     return (
         <ThemeProvider>
             <CSSReset />
-            <Wizard  wrapper={Wrapper}>
+            <Wizard wrapper={Wrapper}>
                 <Step>
                     <Step0 />
                 </Step>
@@ -57,7 +52,7 @@ export default function Page({}) {
     )
 }
 
-const Step0 = () => {
+export const Step0 = () => {
     const { next } = useStep()
     return (
         <Stack spacing={4} flex='1' justify='center' align='center'>
@@ -69,7 +64,7 @@ const Step0 = () => {
     )
 }
 
-const Step1 = ({ next, previous }: WizardStepProps) => {
+export const Step1 = ({ next, previous }: WizardStepProps) => {
     return (
         <Stack spacing={4} flex='1'>
             <Text>Your name</Text>
@@ -87,7 +82,7 @@ const Step1 = ({ next, previous }: WizardStepProps) => {
     )
 }
 
-const Step2 = ({ previous, next }: WizardStepProps) => {
+export const Step2 = ({ previous, next }: WizardStepProps) => {
     return (
         <Stack spacing={4} flex='1'>
             <Text>Insert other text</Text>
@@ -101,7 +96,7 @@ const Step2 = ({ previous, next }: WizardStepProps) => {
     )
 }
 
-const Step3 = ({ previous, next }: WizardStepProps) => {
+export const Step3 = ({ previous, next }: WizardStepProps) => {
     return (
         <Stack d='flex' spacing={4} flex='1'>
             <Text>Ok stop now</Text>
@@ -116,7 +111,7 @@ const Step3 = ({ previous, next }: WizardStepProps) => {
     )
 }
 
-const Step4 = ({ reset }: WizardStepProps) => {
+export const Step4 = ({ reset }: WizardStepProps) => {
     const form = useForm()
     return (
         <Stack d='flex' spacing={4} flex='1' justify='center' align='center'>
@@ -137,9 +132,9 @@ export const Wrapper = ({ children }) => {
     return (
         <Box
             bg='globalBackground'
-            maxWidth='100vw'
-            height='100vh'
-            position='absolute'
+            height='100%'
+            minHeight='400px'
+            // position='absolute'
             // align='center'
             left='0'
             p={['0', '0', '50px']}

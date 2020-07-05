@@ -1,0 +1,44 @@
+import { Playground } from 'dokz'
+import { FiAirplay, FiAlertOctagon, FiAnchor } from 'react-icons/fi'
+import {
+    Box,
+    Button,
+    CSSReset,
+    Flex,
+    Stack,
+    Text,
+    ThemeProvider,
+} from '@chakra-ui/core'
+import {
+    CheckBox,
+    Input,
+    Step,
+    useStep,
+    ValidationError,
+    Wizard,
+    WizardStepProps,
+} from 'form-blocks/src/'
+import { Step0, Step1, Step2, Step3, Step4 } from '../../steps'
+import { useForm } from 'react-final-form'
+
+# CardOptions
+
+<Playground>
+    <Wizard>
+        <Step>
+            <Step0 />
+        </Step>
+        <Step>
+            <Step1 />
+        </Step>
+        <Step>
+            <Step2 />
+        </Step>
+        <Step>
+            <Step3 />
+        </Step>
+        <Step hideFromHistory>
+            <Step4 />
+        </Step>
+    </Wizard>
+</Playground>
