@@ -18,7 +18,7 @@ export const ValidationError = ({ name, ...rest }) => {
     return (
         <>
             {touched && error && (
-                <Box color='red.500' {...rest}>
+                <Box fontSize='0.9em' color='red.500' {...rest}>
                     {error}
                 </Box>
             )}
