@@ -8,7 +8,7 @@ import {
     useColorMode,
 } from '@chakra-ui/core'
 import React, { cloneElement } from 'react'
-import { useField, useForm } from 'react-final-form'
+import { useField, useForm, useFormState } from 'react-final-form'
 import { Switch } from './Switch'
 
 export const ValidationError = ({ name, ...rest }) => {
@@ -89,4 +89,9 @@ export const ColorModeSwitch = (props) => {
             {...props}
         />
     )
+}
+
+export const JsonValues = () => {
+    const { values } = useFormState()
+    return <Box as='pre'>{JSON.stringify(values, null, 4)}</Box>
 }

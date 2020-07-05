@@ -2,50 +2,44 @@
 
 import { Playground } from 'dokz'
 import { Stack, ThemeProvider } from '@chakra-ui/core'
-import { Form } from 'react-final-form'
-import { Labelled, CardOptions } from 'form-blocks/src'
+import { Form, Labelled, CardOptions } from 'form-blocks/src'
 import { FiAirplay, FiAlertOctagon, FiAnchor } from 'react-icons/fi'
 
 <Playground>
     <ThemeProvider>
-        <Form
-            onSubmit={console.log}
-            render={({ values }) => (
-                <Stack p='40px'  spacing='40px'>
-                    <Labelled
-                        name='cards'
-                        label='Select your card'
-                        sublabel='with high attention'
-                        field={
-                            <CardOptions
-                                name='options'
-                                options={[
-                                    {
-                                        icon: <FiAirplay />,
-                                        value: 'x',
-                                        label: 'The x option is the first',
-                                        sublabel:
-                                            'Sublabels add text no one reads',
-                                    },
-                                    {
-                                        icon: <FiAlertOctagon />,
-                                        value: 'y',
-                                        label: 'The y option',
-                                        sublabel: 'maybe true',
-                                    },
-                                    {
-                                        icon: <FiAnchor />,
-                                        value: 'z',
-                                        label: 'The Z makes sleep',
-                                        sublabel:
-                                            'Sublabels add text no one reads',
-                                    },
-                                ]}
-                            />
-                        }
-                    />
-                </Stack>
-            )}
-        />
+        <Form >
+            <Stack p='40px' spacing='40px'>
+                <Labelled
+                    name='cards'
+                    label='Select your card'
+                    sublabel='with high attention'
+                    field={
+                        <CardOptions
+                            name='options'
+                            options={[
+                                {
+                                    icon: <FiAirplay />,
+                                    value: 'x',
+                                    label: 'The x option is the first',
+                                    sublabel: 'Sublabels add text no one reads',
+                                },
+                                {
+                                    icon: <FiAlertOctagon />,
+                                    value: 'y',
+                                    label: 'The y option',
+                                    sublabel: 'maybe true',
+                                },
+                                {
+                                    icon: <FiAnchor />,
+                                    value: 'z',
+                                    label: 'The Z makes sleep',
+                                    sublabel: 'Sublabels add text no one reads',
+                                },
+                            ]}
+                        />
+                    }
+                />
+            </Stack>
+        </Form>
     </ThemeProvider>
 </Playground>
