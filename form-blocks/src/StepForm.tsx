@@ -60,13 +60,13 @@ const makeHash = () => {
 
 function setStepInQuery(newStep, replace = false) {
     if (window.history.pushState) {
-        const newurl = new URL(window.location.href)
-        newurl.searchParams.set(QUERY_PAGE_NUMBER, newStep.toString())
+        const newUrl = new URL(window.location.href)
+        newUrl.searchParams.set(QUERY_PAGE_NUMBER, newStep.toString())
         console.log('setting current step to the query string', newStep)
         const args: [string, string, string] = [
             window.history.state,
             'Step ' + newStep,
-            newurl.search,
+            newUrl.search,
         ]
         if (replace) {
             window.history.replaceState(...args)
@@ -96,7 +96,7 @@ export interface WizardStepProps {
 
 export interface StepProps {
     hideFromHistory?: boolean
-    validate?: (values) => {}
+    validate?: (values: Record<string, any>) => any
 }
 
 export const Step: FC<StepProps> = (props) => {
@@ -106,20 +106,6 @@ export const Step: FC<StepProps> = (props) => {
         return <Fragment>{children}</Fragment>
     }
     return Children.only(cloneElement(children, { ...rest, ...stepProps }))
-}
-
-const UpdateValuesState = ({ setValues }) => {
-    const form = useForm()
-    useEffect(() => {
-        const unsubscribe = form.subscribe(
-            ({ values }) => {
-                setValues(values)
-            },
-            { values: true },
-        )
-        return () => unsubscribe()
-    }, [])
-    return null
 }
 
 export const WizardContext = createContext<WizardStepProps>({})
@@ -306,3 +292,17 @@ export const DefaultWrapper = ({ children }) => {
         </Box>
     )
 }
+
+// const UpdateValuesState = ({ setValues }) => {
+//     const form = useForm()
+//     useEffect(() => {
+//         const unsubscribe = form.subscribe(
+//             ({ values }) => {
+//                 setValues(values)
+//             },
+//             { values: true },
+//         )
+//         return () => unsubscribe()
+//     }, [])
+//     return null
+// }
