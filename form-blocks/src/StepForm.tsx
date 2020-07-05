@@ -145,7 +145,7 @@ export const Wizard = (props: WizardProps) => {
         // TODO display loading in the mean time
         let values = getStoredValues()
         let step = getStepFromQuery()
-        if (!step) {
+        if (!steps[step]) {
             setStepInQuery(0, true)
         }
         setState((state) => ({
@@ -220,7 +220,7 @@ export const Wizard = (props: WizardProps) => {
     }
     // console.log('state', state)
 
-    let activeStep = steps[state.step] || steps[0]
+    let activeStep = steps[state.step]
 
     return (
         <Form
