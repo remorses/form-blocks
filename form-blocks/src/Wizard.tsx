@@ -238,7 +238,6 @@ export const Wizard = (props: WizardProps) => {
                                     style={{
                                         opacity: 0.4,
                                         minHeight: '60px',
-                                        background: '#eee',
                                         margin: '20px 0',
                                         padding: '20px',
                                     }}
