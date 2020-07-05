@@ -12,7 +12,7 @@ import React, {
     useState,
     useCallback,
 } from 'react'
-import { Form, useForm } from 'react-final-form'
+import { Form, useForm, FormSpy } from 'react-final-form'
 
 const QUERY_PAGE_NUMBER = 'stepNumber'
 
@@ -234,16 +234,20 @@ export const Wizard = (props: WizardProps) => {
                         <Wrapper {...stepProps}>
                             {activeStep}
                             {showValuesAsJson && (
-                                <pre
-                                    style={{
-                                        opacity: 0.4,
-                                        minHeight: '60px',
-                                        margin: '20px 0',
-                                        padding: '20px',
-                                    }}
-                                >
-                                    {JSON.stringify(state.values, null, 4)}
-                                </pre>
+                                <FormSpy subscription={{ values: true }}>
+                                    {({ values }) => (
+                                        <pre
+                                            style={{
+                                                opacity: 0.4,
+                                                minHeight: '60px',
+                                                margin: '20px 0',
+                                                padding: '20px',
+                                            }}
+                                        >
+                                            {JSON.stringify(values, null, 4)}
+                                        </pre>
+                                    )}
+                                </FormSpy>
                             )}
                         </Wrapper>
                     </WizardContext.Provider>
