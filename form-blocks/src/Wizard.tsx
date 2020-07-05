@@ -218,45 +218,49 @@ export const Wizard = (props: WizardProps) => {
 
     let activeStep = steps[state.step]
 
+    const renderer = useCallback(
+        ({ handleSubmit, ...rest }) => {
+            const stepProps: WizardStepProps = {
+                isLastStep: state.step === childrenCount - 1,
+                isFirstStep: state.step === 0,
+                currentStep: state.step,
+                next: handleSubmit,
+                reset,
+                previous,
+            }
+            return (
+                <Box as='form' height='100%' onSubmit={handleSubmit}>
+                    <WizardContext.Provider value={stepProps}>
+                        <Wrapper {...stepProps}>
+                            {activeStep}
+                            {showValuesAsJson && (
+                                <pre
+                                    style={{
+                                        opacity: 0.4,
+                                        minHeight: '60px',
+                                        background: '#eee',
+                                        margin: '20px 0',
+                                        padding: '20px',
+                                    }}
+                                >
+                                    {JSON.stringify(state.values, null, 4)}
+                                </pre>
+                            )}
+                        </Wrapper>
+                    </WizardContext.Provider>
+                </Box>
+            )
+        },
+        [steps, state, childrenCount],
+    )
+
     return (
         <Form
             initialValues={state.values}
             validate={validate}
             onSubmit={handleSubmit}
-        >
-            {({ handleSubmit, ...rest }) => {
-                const stepProps: WizardStepProps = {
-                    isLastStep: state.step === childrenCount - 1,
-                    isFirstStep: state.step === 0,
-                    currentStep: state.step,
-                    next: handleSubmit,
-                    reset,
-                    previous,
-                }
-                return (
-                    <Box as='form' height='100%' onSubmit={handleSubmit}>
-                        <WizardContext.Provider value={stepProps}>
-                            <Wrapper {...stepProps}>
-                                {activeStep}
-                                {showValuesAsJson && (
-                                    <pre
-                                        style={{
-                                            opacity: 0.4,
-                                            minHeight: '60px',
-                                            background: '#eee',
-                                            margin: '20px 0',
-                                            padding: '20px',
-                                        }}
-                                    >
-                                        {JSON.stringify(state.values, null, 4)}
-                                    </pre>
-                                )}
-                            </Wrapper>
-                        </WizardContext.Provider>
-                    </Box>
-                )
-            }}
-        </Form>
+            render={renderer}
+        />
     )
 }
 
