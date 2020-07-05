@@ -32,5 +32,12 @@ export const Form = ({
         }
         return Children.only(cloneElement(children, props))
     }, [])
-    return <FinalForm onSubmit={onSubmit} render={renderer} {...rest} />
+    return (
+        <FinalForm
+            subscription={{ submitting: true }}
+            onSubmit={onSubmit}
+            render={renderer}
+            {...rest}
+        />
+    )
 }
